@@ -9,6 +9,7 @@ public class PlayerFall : MonoBehaviour
     public AudioClip scream;
     public GameObject trigger;
     public FPController fPController;
+    public string levelToRestart;
    
 
     void Start()
@@ -41,7 +42,7 @@ public class PlayerFall : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadSceneAsync("Level 1");
+        SceneManager.LoadSceneAsync(levelToRestart);
         fPController.isGameRunning = true;
         Time.timeScale = 1f;
     }

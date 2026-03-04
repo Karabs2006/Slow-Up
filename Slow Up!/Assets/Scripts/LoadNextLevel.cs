@@ -9,8 +9,7 @@ public class LoadNextLevel : MonoBehaviour
     public AudioSource winningAudioSource;
     public AudioClip winSound;
     public AudioSource backgroundAudioSource;
-    public AudioClip backgroundAudioClip;
-
+   
     void Start()
     {
         winningScreen.SetActive(false);
@@ -31,11 +30,6 @@ public class LoadNextLevel : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(levelToRestart);
         Time.timeScale = 1f;
-    }
-
-    public void StopBackgroundMusic()
-    {
-        
     }
 
     void OnTriggerEnter(Collider other)
