@@ -1,0 +1,210 @@
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using TMPro;
+public class FPController : MonoBehaviour
+{   
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
+
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
+    public float gravity = -9.81f;
+
+    public float jumpHeight = 1.5f;
+    [Header("Look Settings")]
+    public Transform cameraTransform;
+    public float lookSensitivity = 0.05f;
+    public float verticalLookLimit = 90f;
+
+    [Header("Shooting")]
+    public GameObject bulletPrefab;
+    public Transform gunPoint;
+    [Header("Crouch Settings")]
+    public float crouchHeight = 1f;
+    public float standHeight = 2f;
+    public float crouchSpeed = 2.5f;
+    private float originalMoveSpeed;
+
+    [Header("Pickup Settings")]
+    //public float pickupRange = 3f;
+    public Transform holdPoint;
+   
+    [Header("Interaction Settingd")]
+    public float interactRange = 3f;
+
+    private CharacterController controller;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+    private Vector3 velocity;
+    private float verticalRotation = 0f;
+
+
+    public bool ammoAvailable;
+    public TMP_Text ammoText;
+    public int ammo = 22;
+    public bool isGameRunning = true;
+    public bool isTimeSlowed;
+
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        originalMoveSpeed = moveSpeed;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    private void Update()
+    {
+        HandleMovement();
+        HandleLook();
+
+        
+    }
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+    public void HandleMovement()
+    {
+        Vector3 move = transform.right * moveInput.x + transform.forward *
+        moveInput.y;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+        if (controller.isGrounded && velocity.y < 0)
+            velocity.y = -2f;
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+    public void HandleLook()
+    {
+        float mouseX = lookInput.x * lookSensitivity;
+        float mouseY = lookInput.y * lookSensitivity;
+        verticalRotation -= mouseY;
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit,
+        verticalLookLimit);
+        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (isGameRunning && context.performed && ammo > 0)
+        {
+            Shoot();
+            ammo--;
+            ammoText.text = $"{ammo}";
+            audioSource.PlayOneShot(audioClip);
+        }
+    }
+
+    private void Shoot()
+    {
+        if (bulletPrefab != null && gunPoint != null)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.AddForce(gunPoint.forward * 1000f); //Adjust force value as needed
+                Destroy(bullet, 3); //delete bullet after 3 seconds
+
+            }
+
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            controller.height = crouchHeight;
+            moveSpeed = crouchSpeed;
+        }
+
+        else if (context.canceled)
+        {
+            controller.height = standHeight;
+            moveSpeed = originalMoveSpeed;
+        }
+
+    }
+
+    public void OnSlowTime(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isTimeSlowed = true;
+        }
+    }
+
+    /*public void OnPickUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+    if (heldObject == null)
+        {
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+            {
+                PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
+                if (pickUp != null)
+                {
+                    pickUp.PickUp(holdPoint);
+                    heldObject = pickUp;
+                }
+            }
+        }
+        else
+        {
+            heldObject.Drop();
+            heldObject = null;
+        }
+    }
+    */
+
+
+    /*
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
+        {
+
+            if (hit.collider.CompareTag("Switchable"))
+            {
+                var switcher = hit.collider.GetComponent<MaterialSwitcher>();
+                if (switcher != null)
+                {
+                    switcher.ToggleMaterial();
+                }
+            }
+
+            else if (hit.collider.CompareTag("Door"))
+            {
+                Animator doorAnimator = hit.collider.GetComponent<Animator>();
+                if (doorAnimator != null)
+                {
+                    doorAnimator.SetTrigger("OpenDoor");
+                }
+            }
+        }
+    }
+    */
+    
+}
