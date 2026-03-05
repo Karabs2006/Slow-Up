@@ -37,6 +37,9 @@ public class TimeAbility : MonoBehaviour
             if (isMeterFull)
             {
                 StopCoroutine(FillMeter());
+                slider.value = 5;
+                isMeterFull = true;
+
             }
         }
   
@@ -74,6 +77,7 @@ public class TimeAbility : MonoBehaviour
             if(i == 5)
             {
                 isMeterFull = true;
+
             }
 
             yield return new WaitForSecondsRealtime(1f);
