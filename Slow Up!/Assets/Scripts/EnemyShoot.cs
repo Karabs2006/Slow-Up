@@ -1,0 +1,56 @@
+using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
+
+public class EnemyShoot : MonoBehaviour
+{
+   
+   public GameObject enemyBulletPrefab;
+   public Transform enemyGunPoint;
+
+   bool hasBulletFired;
+
+    void Start()
+    {
+        hasBulletFired = false;
+    }
+
+    void Update()
+    {   
+       if(!hasBulletFired){
+        ShootGun();
+       }
+
+    }
+
+
+    public void ShootGun()
+    {
+        if (enemyBulletPrefab != null && enemyGunPoint != null)
+        {
+            GameObject bullet = Instantiate(enemyBulletPrefab ,enemyGunPoint.position, enemyGunPoint.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                //rb.AddForce(enemyGunPoint.forward * 1000f); //Adjust force value as needed
+                rb.linearVelocity = enemyGunPoint.forward * 20f;
+                Destroy(bullet, 3); //delete bullet after 3 seconds
+
+            }
+
+            hasBulletFired = true;
+            StartCoroutine(CoolDown());
+
+        }
+    }
+   
+    
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(2f);
+        hasBulletFired = false;
+    }
+    
+}

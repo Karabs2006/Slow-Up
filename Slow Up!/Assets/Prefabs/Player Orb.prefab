@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6125449323359521900}
   - component: {fileID: 8026012398117269880}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Player Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

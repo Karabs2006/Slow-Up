@@ -31,7 +31,7 @@ public class FPController : MonoBehaviour
     //public float pickupRange = 3f;
     public Transform holdPoint;
    
-    [Header("Interaction Settingd")]
+    [Header("Interaction Settings")]
     public float interactRange = 3f;
 
     private CharacterController controller;
@@ -47,6 +47,10 @@ public class FPController : MonoBehaviour
     public bool isGameRunning = true;
     public bool isTimeSlowed;
 
+    void Start()
+    {
+        ammoText.text = $"{ammo}";
+    }
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
