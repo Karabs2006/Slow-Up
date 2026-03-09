@@ -2389,6 +2389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelName: Level 3
   levelToRestart: Level 2
+  reachedEndPlatform: 0
   winningScreen: {fileID: 59488669}
   winningAudioSource: {fileID: 1576786148}
   winSound: {fileID: 8300000, guid: 0b76c059760a5f247bcc8e2c118568d5, type: 3}
@@ -2464,6 +2465,7 @@ MonoBehaviour:
   scream: {fileID: 8300000, guid: 2c137b8af3359944fbd8bf14c006aa9d, type: 3}
   trigger: {fileID: 1147774597}
   fPController: {fileID: 1124174509}
+  loadNextLevel: {fileID: 1138122489}
   levelToRestart: Level 2
 --- !u!1 &1247102411
 GameObject:

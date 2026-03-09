@@ -12,7 +12,8 @@ public class EnemyShoot : MonoBehaviour
 
     void Start()
     {
-        hasBulletFired = false;
+        //hasBulletFired = false;
+        ShootGun();
     }
 
     void Update()

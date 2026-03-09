@@ -7,7 +7,6 @@ public class FPController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
 
-
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float gravity = -9.81f;
@@ -27,21 +26,12 @@ public class FPController : MonoBehaviour
     public float crouchSpeed = 2.5f;
     private float originalMoveSpeed;
 
-    [Header("Pickup Settings")]
-    //public float pickupRange = 3f;
-    public Transform holdPoint;
-   
-    [Header("Interaction Settings")]
-    public float interactRange = 3f;
-
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
 
-
-    public bool ammoAvailable;
     public TMP_Text ammoText;
     public int ammo = 22;
     public bool isGameRunning = true;
@@ -62,11 +52,9 @@ public class FPController : MonoBehaviour
     {
         HandleMovement();
         HandleLook();
-
-        
     }
     public void OnMovement(InputAction.CallbackContext context)
-    {
+    {   
         moveInput = context.ReadValue<Vector2>();
     }
     public void OnLook(InputAction.CallbackContext context)
@@ -124,9 +112,7 @@ public class FPController : MonoBehaviour
             {
                 rb.AddForce(gunPoint.forward * 1000f); //Adjust force value as needed
                 Destroy(bullet, 3); //delete bullet after 3 seconds
-
             }
-
         }
     }
 
@@ -154,61 +140,6 @@ public class FPController : MonoBehaviour
         }
     }
 
-    /*public void OnPickUp(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
 
-    if (heldObject == null)
-        {
-            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
-            {
-                PickUpObject pickUp = hit.collider.GetComponent<PickUpObject>();
-                if (pickUp != null)
-                {
-                    pickUp.PickUp(holdPoint);
-                    heldObject = pickUp;
-                }
-            }
-        }
-        else
-        {
-            heldObject.Drop();
-            heldObject = null;
-        }
-    }
-    */
-
-
-    /*
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
-        {
-
-            if (hit.collider.CompareTag("Switchable"))
-            {
-                var switcher = hit.collider.GetComponent<MaterialSwitcher>();
-                if (switcher != null)
-                {
-                    switcher.ToggleMaterial();
-                }
-            }
-
-            else if (hit.collider.CompareTag("Door"))
-            {
-                Animator doorAnimator = hit.collider.GetComponent<Animator>();
-                if (doorAnimator != null)
-                {
-                    doorAnimator.SetTrigger("OpenDoor");
-                }
-            }
-        }
-    }
-    */
     
 }

@@ -5,6 +5,7 @@ public class LoadNextLevel : MonoBehaviour
 {
     public string nextLevelName;
     public string levelToRestart;
+    public bool reachedEndPlatform = false;
     public GameObject winningScreen;
     public AudioSource winningAudioSource;
     public AudioClip winSound;
@@ -42,6 +43,7 @@ public class LoadNextLevel : MonoBehaviour
             Cursor.visible = true;
             winningAudioSource.PlayOneShot(winSound);
             backgroundAudioSource.Stop();
+            reachedEndPlatform = true;
         
         }
 

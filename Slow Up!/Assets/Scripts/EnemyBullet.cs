@@ -2,18 +2,33 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
-{
-    if(collision.gameObject.CompareTag("Player"))
+
+    public GameObject player;
+    void Start()
     {
-        Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
-
-        if(playerRb != null)
-        {
-            playerRb.AddForce(transform.forward * 10f, ForceMode.Impulse);
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
     }
+    
+    void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
+            //playerRb.AddForce(transform.forward * 10f, ForceMode.Impulse);
 
-   
-}
+            player.transform.position = new Vector3(
+            player.transform.position.x - 100f,
+            player.transform.position.y,
+            player.transform.position.z
+            );
+            
+
+            if(playerRb != null)
+            {
+                
+            }
+        }
+
+    
+    }
 }

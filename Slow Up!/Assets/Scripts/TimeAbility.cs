@@ -8,8 +8,8 @@ public class TimeAbility : MonoBehaviour
     public FPController fPController;
     bool isTimeUp= false;
     bool isCountingDown = false;
-
     bool isMeterFull = true;
+    
     
 
     void Start()
@@ -76,12 +76,10 @@ public class TimeAbility : MonoBehaviour
             if(i == 5)
             {
                 isMeterFull = true;
-
             }
 
             yield return new WaitForSecondsRealtime(1f);
         }
-        
     }
 
 }

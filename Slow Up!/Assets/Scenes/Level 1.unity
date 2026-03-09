@@ -2366,11 +2366,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelName: Level 2
   levelToRestart: Level 1
+  reachedEndPlatform: 0
   winningScreen: {fileID: 59488669}
   winningAudioSource: {fileID: 1479525573}
   winSound: {fileID: 8300000, guid: f684279e8b9f58840ad6f78c5e683920, type: 3}
   backgroundAudioSource: {fileID: 113192819}
-  backgroundAudioClip: {fileID: 8300000, guid: 9c225f124b83fcf44b12f543b56be34f, type: 3}
 --- !u!1 &1147774597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,6 +2442,7 @@ MonoBehaviour:
   scream: {fileID: 8300000, guid: 2c137b8af3359944fbd8bf14c006aa9d, type: 3}
   trigger: {fileID: 1147774597}
   fPController: {fileID: 1124174509}
+  loadNextLevel: {fileID: 1138122489}
   levelToRestart: Level 1
 --- !u!1 &1247102411
 GameObject:
