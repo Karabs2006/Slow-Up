@@ -6,9 +6,9 @@ public class TimeAbility : MonoBehaviour
 {
     public Slider slider; 
     public FPController fPController;
-    bool isTimeUp= false;
-    bool isCountingDown = false;
-    bool isMeterFull = true;
+    public bool isTimeUp= false;
+    public bool isCountingDown = false;
+    public bool isMeterFull = true;
     
     
 
@@ -44,7 +44,7 @@ public class TimeAbility : MonoBehaviour
   
     }
 
-    IEnumerator SlowDown()
+   IEnumerator SlowDown()
     {   
         isCountingDown = true;
         fPController.isTimeSlowed = false;

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +10,9 @@ public class PlayerFall : MonoBehaviour
     public AudioClip scream;
     public GameObject trigger;
     public FPController fPController;
+    bool wasRestartPressed;
     public LoadNextLevel loadNextLevel;
-    public TimeAbility timeAbility;
+   
     public string levelToRestart;
     public bool isGameResumed;
    
@@ -25,10 +27,16 @@ public class PlayerFall : MonoBehaviour
         {
             GameLoss();
         }
-        if(fPController.isGameRunning)
+        if(wasRestartPressed)
         {
-            ResumeGame();
+            StartCoroutine(RestartGameOnce());
         }
+        else if(!wasRestartPressed)
+        {
+            StopCoroutine(RestartGameOnce());
+        }
+
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,7 +51,7 @@ public class PlayerFall : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadSceneAsync(levelToRestart);
-        fPController.isGameRunning = true;
+        wasRestartPressed = true;
         ResumeGame();
     }
 
@@ -67,6 +75,13 @@ public class PlayerFall : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    IEnumerator RestartGameOnce()
+    {
+        ResumeGame();
+        yield return new WaitForSeconds(1f);
+        wasRestartPressed = false;
     }
 
 
