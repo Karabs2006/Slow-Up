@@ -5,12 +5,31 @@ public class GeneralUI : MonoBehaviour
 {
     public string levelName;
     public GameObject controls;
+    public FPController fPController;
+    public GameObject pauseMenu;
 
     void Start()
     {
         controls.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
+    void Update()
+    {
+        if(fPController.isGamePaused)
+        {
+            PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {   
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        fPController.lookSensitivity = 0f;
+    }
     public void LoadLevel()
     {
         SceneManager.LoadSceneAsync(levelName);
@@ -23,7 +42,13 @@ public class GeneralUI : MonoBehaviour
     }
 
     public void ResumeGame()
-    {
+    {   
+        pauseMenu.SetActive(false);
+        fPController.isGamePaused = false;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        fPController.lookSensitivity = 0.6f;
         
     }
 

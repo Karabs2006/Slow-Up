@@ -36,6 +36,7 @@ public class FPController : MonoBehaviour
     public int ammo = 22;
     public bool isGameRunning = true;
     public bool isTimeSlowed;
+    public bool isGamePaused;
 
     void Start()
     {
@@ -103,7 +104,7 @@ public class FPController : MonoBehaviour
 
     private void Shoot()
     {
-        if (bulletPrefab != null && gunPoint != null)
+        if (bulletPrefab != null && gunPoint != null && !isGamePaused)
         {
             GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -140,6 +141,12 @@ public class FPController : MonoBehaviour
         }
     }
 
-
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isGamePaused = true;
+        }
+    }
     
 }
