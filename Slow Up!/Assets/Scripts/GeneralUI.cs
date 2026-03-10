@@ -4,6 +4,12 @@ using UnityEngine.SceneManagement;
 public class GeneralUI : MonoBehaviour
 {
     public string levelName;
+    public GameObject controls;
+
+    void Start()
+    {
+        controls.SetActive(false);
+    }
 
     public void LoadLevel()
     {
@@ -23,7 +29,12 @@ public class GeneralUI : MonoBehaviour
 
     public void LoadControls()
     {
-        
+        controls.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        controls.SetActive(false);
     }
 
 }
