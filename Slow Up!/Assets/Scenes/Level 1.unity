@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Main Menu
+  levelToRestart: 
   controls: {fileID: 548203934}
   fPController: {fileID: 1124174509}
   pauseMenu: {fileID: 1222560405}
@@ -3219,11 +3220,9 @@ MonoBehaviour:
   loseScreen: {fileID: 226843581}
   audioSource: {fileID: 897452789}
   scream: {fileID: 8300000, guid: 2c137b8af3359944fbd8bf14c006aa9d, type: 3}
-  trigger: {fileID: 1147774597}
   fPController: {fileID: 1124174509}
   loadNextLevel: {fileID: 1138122489}
   levelToRestart: Level 1
-  isGameResumed: 0
 --- !u!1 &1222560405
 GameObject:
   m_ObjectHideFlags: 0
