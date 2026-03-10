@@ -8,14 +8,12 @@ public class PlayerFall : MonoBehaviour
     public GameObject loseScreen;
     public AudioSource audioSource;
     public AudioClip scream;
-    public GameObject trigger;
     public FPController fPController;
     bool wasRestartPressed;
     public LoadNextLevel loadNextLevel;
    
     public string levelToRestart;
-    public bool isGameResumed;
-   
+    
     void Start()
     {
         loseScreen.SetActive(false);

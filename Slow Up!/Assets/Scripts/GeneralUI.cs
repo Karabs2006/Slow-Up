@@ -1,12 +1,17 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
+
 
 public class GeneralUI : MonoBehaviour
 {
     public string levelName;
+    public string levelToRestart;
     public GameObject controls;
     public FPController fPController;
     public GameObject pauseMenu;
+    bool wasRestartPressed;
+
 
     void Start()
     {
@@ -19,6 +24,15 @@ public class GeneralUI : MonoBehaviour
         if(fPController.isGamePaused)
         {
             PauseGame();
+        }
+
+         if(wasRestartPressed)
+        {
+            StartCoroutine(RestartGameOnce());
+        }
+        else if(!wasRestartPressed)
+        {
+            StopCoroutine(RestartGameOnce());
         }
     }
 
@@ -61,5 +75,21 @@ public class GeneralUI : MonoBehaviour
     {
         controls.SetActive(false);
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadSceneAsync(levelToRestart);
+        wasRestartPressed = true;
+        ResumeGame();
+    }
+
+     IEnumerator RestartGameOnce()
+    {
+        ResumeGame();
+        yield return new WaitForSeconds(1f);
+        wasRestartPressed = false;
+    }
+
+
 
 }
