@@ -1813,9 +1813,6 @@ MonoBehaviour:
   crouchHeight: 1
   standHeight: 2
   crouchSpeed: 2.5
-  holdPoint: {fileID: 0}
-  interactRange: 3
-  ammoAvailable: 0
   ammoText: {fileID: 324429580}
   ammo: 25
   isGameRunning: 1
@@ -2437,13 +2434,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4959b7b3e06e7c94bb1ff5342009e9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScreen: {fileID: 226843581}
+  loseScreen: {fileID: 226843581}
   audioSource: {fileID: 897452789}
   scream: {fileID: 8300000, guid: 2c137b8af3359944fbd8bf14c006aa9d, type: 3}
   trigger: {fileID: 1147774597}
   fPController: {fileID: 1124174509}
   loadNextLevel: {fileID: 1138122489}
   levelToRestart: Level 1
+  isGameResumed: 0
 --- !u!1 &1247102411
 GameObject:
   m_ObjectHideFlags: 0
