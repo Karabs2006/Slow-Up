@@ -69,7 +69,7 @@ public class TimeAbility : MonoBehaviour
 
     IEnumerator FillMeter()
     {   
-        for(int i = 0; i >= 0; i++)
+        for(int i = 0; i <= 5; i++)
         {   
             slider.value = i;
 
