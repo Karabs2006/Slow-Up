@@ -7,6 +7,8 @@ public class Timer : MonoBehaviour
 {   
     public PlayerFall playerFall;
     public TMP_Text timeText;
+    public FPController fPController;
+
     public int timeInt;
    
     void Start()
@@ -14,11 +16,15 @@ public class Timer : MonoBehaviour
         StartCoroutine(Countdown());
         timeText.text = $"{timeInt}";
     }
+    
 
-    IEnumerator Countdown()
+    /*IEnumerator Countdown()
     {
        for(int i = timeInt; i >= 0; i--)
-        {   
+        {  
+            //yield return new WaitUntil(() => canContinue == true);
+
+            while(!fPController.isGamePaused){
             timeText.text = $"{i}";
             if(i == 0)
             {
@@ -26,6 +32,38 @@ public class Timer : MonoBehaviour
             }
             
             yield return new WaitForSecondsRealtime(1f);
+            }
+        }
+        }
+    */
+
+
+
+    IEnumerator Countdown()
+{
+    for (int i = timeInt; i >= 0; i--)
+    {
+        // Wait if paused
+        yield return new WaitWhile(() => fPController.isGamePaused);
+
+        timeText.text = $"{i}";
+
+        if (i == 0)
+        {
+            playerFall.GameLoss();
+        }
+
+        float elapsed = 0f;
+
+        while (elapsed < 1f)
+        {
+            if (!fPController.isGamePaused)
+            {
+                elapsed += Time.unscaledDeltaTime;
+            }
+
+            yield return null;
         }
     }
+}
 }

@@ -3778,6 +3778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerFall: {fileID: 1147774600}
   timeText: {fileID: 614171295}
+  fPController: {fileID: 1124174509}
   timeInt: 150
 --- !u!1 &1243714998
 GameObject:
