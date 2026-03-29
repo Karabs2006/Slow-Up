@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LoadNextLevel : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class LoadNextLevel : MonoBehaviour
     public AudioSource winningAudioSource;
     public AudioClip winSound;
     public AudioSource backgroundAudioSource;
+    public TMP_Text orbsLeft;
+    public TMP_Text playerTimeLeft;
+    public FPController fPController;
+    public GameObject counters;
+
+    public Timer timer;
    
     void Start()
     {
@@ -44,10 +51,16 @@ public class LoadNextLevel : MonoBehaviour
             winningAudioSource.PlayOneShot(winSound);
             backgroundAudioSource.Stop();
             reachedEndPlatform = true;
+            StopCoroutine(timer.Countdown());
         
+            playerTimeLeft.text = $"{timer.timeScript}";
+            orbsLeft.text =$"{fPController.ammo}";
+            counters.SetActive(false);
         }
 
     }
+
+
 
 
 

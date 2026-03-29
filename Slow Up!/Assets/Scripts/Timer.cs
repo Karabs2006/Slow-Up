@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     public FPController fPController;
 
     public int timeInt;
+    public int timeScript;
    
     void Start()
     {   
@@ -39,31 +40,32 @@ public class Timer : MonoBehaviour
 
 
 
-    IEnumerator Countdown()
-{
-    for (int i = timeInt; i >= 0; i--)
+    public IEnumerator Countdown()
     {
-        // Wait if paused
-        yield return new WaitWhile(() => fPController.isGamePaused);
-
-        timeText.text = $"{i}";
-
-        if (i == 0)
+        for (int i = timeInt; i >= 0; i--)
         {
-            playerFall.GameLoss();
-        }
+            // Wait if paused
+            yield return new WaitWhile(() => fPController.isGamePaused);
 
-        float elapsed = 0f;
+            timeText.text = $"{i}";
+            timeScript = i;
 
-        while (elapsed < 1f)
-        {
-            if (!fPController.isGamePaused)
+            if (i == 0)
             {
-                elapsed += Time.unscaledDeltaTime;
+                playerFall.GameLoss();
             }
 
-            yield return null;
+            float elapsed = 0f;
+
+            while (elapsed < 1f)
+            {
+                if (!fPController.isGamePaused)
+                {
+                    elapsed += Time.unscaledDeltaTime;
+                }
+
+                yield return null;
+            }
         }
     }
-}
 }
