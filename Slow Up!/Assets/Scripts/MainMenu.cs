@@ -17,6 +17,12 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void LoadHardcore()
+    {
+        SceneManager.LoadSceneAsync("Level 3_HC");
+        Time.timeScale = 1f;
+    }
+
     public void QuitGame()
     {
         Application.Quit();

@@ -1,11 +1,8 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
-
-public class EnemyShoot : MonoBehaviour
+public class EnemyShootHC : MonoBehaviour
 {
-   
-   public GameObject enemyBulletPrefab;
+public GameObject enemyBulletPrefab;
    public Transform enemyGunPoint;
 
    bool hasBulletFired;
@@ -35,7 +32,7 @@ public class EnemyShoot : MonoBehaviour
             if (rb != null)
             {
                 //rb.AddForce(enemyGunPoint.forward * 1000f); //Adjust force value as needed
-                rb.linearVelocity = enemyGunPoint.forward * 30f;
+                rb.linearVelocity = enemyGunPoint.forward * 50f;
                 Destroy(bullet, 1.5f); //delete bullet after 3 seconds
 
             }
@@ -47,10 +44,9 @@ public class EnemyShoot : MonoBehaviour
     }
    
     
-
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.8f);
         hasBulletFired = false;
     }
     
