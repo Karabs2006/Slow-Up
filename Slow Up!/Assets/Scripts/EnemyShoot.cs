@@ -35,8 +35,8 @@ public class EnemyShoot : MonoBehaviour
             if (rb != null)
             {
                 //rb.AddForce(enemyGunPoint.forward * 1000f); //Adjust force value as needed
-                rb.linearVelocity = enemyGunPoint.forward * 20f;
-                Destroy(bullet, 3); //delete bullet after 3 seconds
+                rb.linearVelocity = enemyGunPoint.forward * 50f;
+                Destroy(bullet, 1.5f); //delete bullet after 3 seconds
 
             }
 
@@ -50,7 +50,7 @@ public class EnemyShoot : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         hasBulletFired = false;
     }
     
