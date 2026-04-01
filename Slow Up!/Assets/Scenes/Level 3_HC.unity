@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 1647cd29511bae043a137eb4c9f1bb1f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: df1f2517dbdd7cb45a3ee8d06afe746a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -5160,7 +5160,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0b76c059760a5f247bcc8e2c118568d5, type: 3}
+  m_Resource: {fileID: 8300000, guid: f684279e8b9f58840ad6f78c5e683920, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7295,7 +7295,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 80929480d49e17e4183893cf2a2dbf3b, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9c225f124b83fcf44b12f543b56be34f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
