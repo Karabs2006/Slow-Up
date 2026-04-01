@@ -93,7 +93,7 @@ public class FPController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (isGameRunning && context.performed && ammo > 0)
+        if (isGameRunning && context.performed && ammo > 0 && !isGamePaused)
         {
             Shoot();
             ammo--;

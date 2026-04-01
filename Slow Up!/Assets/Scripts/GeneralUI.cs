@@ -83,6 +83,12 @@ public class GeneralUI : MonoBehaviour
         ResumeGame();
     }
 
+     public void LoadHardcore()
+    {
+        SceneManager.LoadSceneAsync("Level 3_HC");
+        Time.timeScale = 1f;
+    }
+
      IEnumerator RestartGameOnce()
     {
         ResumeGame();
